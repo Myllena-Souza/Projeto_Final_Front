@@ -1,0 +1,37 @@
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header>
+      <strong>Listagem</strong>
+    </c-card-header>
+    <c-card-body>
+      <p class="text-body-secondary small">
+        Listagem de matérias cadastradas no sistema
+      </p>
+      <table cTable>
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Disciplina</th>
+            <th scope="col">Professor</th>
+            <th scope="col">Quantidade de vagas</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let disciplina of (disciplinas$ | async); let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+
+            <td>{{ disciplina.nome | uppercase }}</td>
+            <td>{{ disciplina.professor }}</td>
+            <td>{{ disciplina.vagas }}</td>
+            <td>
+              <button cButton class="me-1" color="warning" type="submit">Editar</button>
+              <button cButton class="me-1" color="danger" type="button" (click)="excluirDisciplina(disciplina.id!)">Excluir</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </c-card-body>
+  </c-card>
+</c-col>

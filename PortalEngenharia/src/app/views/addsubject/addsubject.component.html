@@ -1,0 +1,48 @@
+<c-col xs="12">
+  <c-card class="mb-4">
+    <c-card-header>
+      <strong>Cadastre as disciplinas no sistema</strong>
+    </c-card-header>
+    <c-card-body>
+      <form [formGroup]="disciplinaForm" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label cLabel for="nome">Nome da disciplina</label>
+          <input cFormControl
+                 id="nome"
+                 placeholder="Nome da disciplina"
+                 type="text"
+                 formControlName="nome"
+          />
+          <div *ngIf="disciplinaForm.get('nome')!.invalid && (disciplinaForm.get('nome')!.dirty || disciplinaForm.get('nome')!.touched)">
+            <small class="text-danger">O nome da disciplina é obrigatório.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label cLabel for="professor">Professor da disciplina</label>
+          <input cFormControl
+                 id="professor"
+                 placeholder="Professor da disciplina"
+                 type="text"
+                 formControlName="professor"
+          />
+          <div *ngIf="disciplinaForm.get('professor')!.invalid && (disciplinaForm.get('professor')!.dirty || disciplinaForm.get('professor')!.touched)">
+            <small class="text-danger">O professor da disciplina é obrigatório.</small>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label cLabel for="vagas">Quantidade de vagas da disciplina</label>
+          <input cFormControl
+                 id="vagas"
+                 placeholder="Quantidade de vagas da disciplina"
+                 type="number"
+                 formControlName="vagas"
+          />
+          <div *ngIf="disciplinaForm.get('vagas')!.invalid && (disciplinaForm.get('vagas')!.dirty || disciplinaForm.get('vagas')!.touched)">
+            <small class="text-danger">Erro no valor de entrada.</small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+      </form>
+    </c-card-body>
+  </c-card>
+</c-col>
