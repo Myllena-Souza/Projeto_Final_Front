@@ -1,3 +1,37 @@
-<button [active]="true" cButton class="mt-3" color="primary" [routerLink]="['/login']">
-  Ir para login
-</button>
+<div class="container">
+  <header class="header">
+    <h1 class="title">Bem-vindo ao Portal de Cadastro de Disciplinas</h1>
+    <p class="subtitle">Uma ferramenta que vai servir como catalizadora para seus estudos!</p>
+    <button [active]="true" cButton class="cta-button" color="primary" [routerLink]="['/login']">
+      Faça Login
+    </button>
+  </header>
+
+  <section class="features">
+    <div class="feature">
+      <div class="feature-image">
+        <img src="./assets/landingpage/2.png" alt="Feature 1">
+      </div>
+      <h2>Gerencie Disciplinas</h2>
+      <p>Adicione disciplinas e professores e tenha maior controle do semestre</p>
+    </div>
+    <div class="feature">
+      <div class="feature-image">
+        <img src="./assets/landingpage/1.png" alt="Feature 2">
+      </div>
+      <h2>Desempenho</h2>
+      <p>Com essa ferramenta alunos e professores terão uma maior organização e desempenho</p>
+    </div>
+    <div class="feature">
+      <div class="feature-image">
+        <img src="./assets/landingpage/3.png" alt="Feature 3">
+      </div>
+      <h2>Facilite as Decisões</h2>
+      <p>Liste, adicione, remova e edite quantas vezes desejar</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2024 Seu Portal de Engenharia Química. Desenvolvido por Caio, Myllena, Leane, Gabriel e Girleide.</p>
+  </footer>
+</div>
