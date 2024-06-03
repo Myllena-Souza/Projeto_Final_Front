@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { getDatabase, ref, push, onValue, remove, DatabaseReference } from 'firebase/database';
+import { getDatabase, ref, push, onValue, remove, DatabaseReference, set } from 'firebase/database';
 import { Observable } from 'rxjs';
 
 export interface Disciplina {
@@ -13,6 +13,7 @@ export interface Disciplina {
   providedIn: 'root'
 })
 export class DisciplinaService {
+  
   private databaseRef = getDatabase();
   private disciplinasRef = ref(this.databaseRef, 'disciplinas');
 
@@ -49,6 +50,17 @@ export class DisciplinaService {
       })
       .catch((error) => {
         console.error('Error removing document: ', error);
+      });
+  }
+
+  updateDisciplina(id: string, disciplina: Disciplina): Promise<void> {
+    const disciplinaRef: DatabaseReference = ref(this.databaseRef, `disciplinas/${id}`);
+    return set(disciplinaRef, disciplina)
+      .then(() => {
+        console.log('Document successfully updated');
+      })
+      .catch((error) => {
+        console.error('Error updating document: ', error);
       });
   }
 }

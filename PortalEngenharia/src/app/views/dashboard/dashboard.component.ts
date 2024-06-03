@@ -1,4 +1,4 @@
-
+import {EditDisciplinaComponent} from 'src/app/views/edit-disciplina/edit-disciplina.component'
 import { DOCUMENT, NgStyle, CommonModule, NgFor  } from '@angular/common';
 import { Component, DestroyRef, effect, inject, OnInit, Renderer2, signal, WritableSignal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -25,6 +25,7 @@ import { IconDirective } from '@coreui/icons-angular';
 
 import { Observable, of } from 'rxjs';
 import { Disciplina, DisciplinaService } from 'src/app/disciplina.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface IUser {
   name: string;
@@ -49,7 +50,7 @@ interface IUser {
 export class DashboardComponent implements OnInit {
   disciplinas$: Observable<Disciplina[]> | undefined;
 
-  constructor(private disciplinaService: DisciplinaService) {}
+  constructor(private disciplinaService: DisciplinaService, private modalService: NgbModal) {}
 
   ngOnInit(): void {
     this.disciplinaService.getDisciplinas().subscribe(disciplinas => {
@@ -65,6 +66,19 @@ export class DashboardComponent implements OnInit {
       console.error('Erro ao excluir disciplina:', error);
     }
   }
-  
+
+  openEditModal(disciplina: Disciplina) {
+    const modalRef = this.modalService.open(EditDisciplinaComponent);
+    modalRef.componentInstance.disciplina = disciplina;
+
+    modalRef.result.then(() => {
+      // Reload the list of disciplinas if needed
+      this.disciplinaService.getDisciplinas().subscribe(disciplinas => {
+        this.disciplinas$ = of(disciplinas);
+      });
+    }, (reason) => {
+      console.log('Modal dismissed:', reason);
+    });
+  }
 
 }
